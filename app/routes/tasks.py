@@ -52,6 +52,7 @@ def delete_task(task_id):
     _tasks = [t for t in _tasks if t["id"] != task_id]
     return "", 204
 
+
 @tasks_bp.get("/count")
 def count_tasks():
     return jsonify({"count": len(_tasks)})
