@@ -1,5 +1,4 @@
 from flask import Blueprint, jsonify, request
-import os
 
 from app.utils.scoring import score_task
 
@@ -12,6 +11,7 @@ _tasks = [
 ]
 _next_id = 3
 
+
 @tasks_bp.get("/")
 def list_tasks():
     scored = [
@@ -19,6 +19,7 @@ def list_tasks():
     ]
     scored.sort(key=lambda t: t["priority"], reverse=True)
     return jsonify(scored)
+
 
 @tasks_bp.post("/")
 def create_task():
@@ -50,3 +51,8 @@ def delete_task(task_id):
 
     _tasks = [t for t in _tasks if t["id"] != task_id]
     return "", 204
+
+
+@tasks_bp.get("/count")
+def count_tasks():
+    return jsonify({"count": len(_tasks)})
