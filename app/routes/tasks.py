@@ -11,7 +11,6 @@ _tasks = [
 ]
 _next_id = 3
 
-
 @tasks_bp.get("/")
 def list_tasks():
     scored = [
@@ -19,7 +18,6 @@ def list_tasks():
     ]
     scored.sort(key=lambda t: t["priority"], reverse=True)
     return jsonify(scored)
-
 
 @tasks_bp.post("/")
 def create_task():
